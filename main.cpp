@@ -1,37 +1,42 @@
 #include <iostream>
 #include <string>
-#include "file_handler.h"
+#include <fstream>
 
-//Creating a class for lecture details
-class lecture{
-    std::string subject_name;
-    public:
-    void getdata(std::string);
-    void display(void);
-};
+std::string sub_name;
 
-//function to get data of the class
-void lecture::getdata(std::string s_name) {
-    s_name = subject_name;
+// Input Stream
+void input() {
+    std::cout << "[+] Enter the name of the Subject" << std::endl;
+    std::getline(std::cin, sub_name);
 }
 
-//function to display data of the class
-void lecture::display(void) {
-    // std::cout << "Subject Name: " << subject_name<< std::endl;
+// Output Stream
+void output() {
+    std::cout << "[^] Subject Name Entered: " << sub_name<< std::endl;
+}
+
+// Write subject name to file
+void write_subject_name(std::string s_name) {
+    std::fstream Subjects;
+    Subjects.open("Subjects", std::ios::app); //app for appending
+    if(Subjects.is_open()) {
+        Subjects << s_name << std::endl;
+        Subjects.close();
+    }
+    std::cout << "[^] Subject Added and Written to File" << std::endl;
+}
+
+// Read Subject Name from the File
+void read_subject_name() {
+    Subjects.open("Subjects", std::ios::in); //read mode
+    if(Subjects.is_open()) {
+        std::string line;
+    }
 }
 
 int main() {
-    std::string sub_name;
-    int n{};
-    std::cout << "Enter the Number of Subjects You want to monitor attendance of: " << std::endl;
-    std::cin >> n;
-    for(int i = 1; i<n+1; i++){
-        std::cout << "Enter the name of the " <<i <<"th Subject"<<std::endl;
-        std:: cin >> sub_name;
-        lecture sub_name;
-        write_subject_name();
-        sub_name.getdata(sub_name);
-        sub_name.display();
-    }
+    input();
+    output();
+    write_subject_name(sub_name);
     return 0;
 }
