@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <windows.h>
+#include "file_handler.h"
 
 std::string sub_name;
-std::fstream Subjects;
 
 // Input Stream
 void input() {
@@ -17,32 +18,13 @@ void output() {
     std::cout << "[^] Subject Name Entered: " << sub_name<< std::endl;
 }
 
-// Write subject name to file
-void write_subject_name(std::string s_name) {
-    Subjects.open("Subjects", std::ios::app); //app for appending
-    if(Subjects.is_open()) {
-        Subjects << s_name << std::endl;
-        Subjects.close();
-    }
-    std::cout << "[^] Subject Added and Written to File" << std::endl;
-}
-
-// Read Subject Name from the File
-void read_subject_name() {
-    Subjects.open("Subjects", std::ios::in); //read mode
-    if(Subjects.is_open()) {
-        std::string line;
-        while(std::getline(Subjects, line)) {
-            std::cout << line << std::endl;
-        }
-        Subjects.close();
-    }
-}
-
 int main() {
     char f_input, s_input;
+    Sleep(500);
     std::cout << "Welcome to Attendance Records Program" << std::endl;
+    Sleep(500);
     std::cout << "This Piece of Software Lets you Monitor your attendance" << std::endl;
+    Sleep(500);
     std::cout << "Press M to enter Menu" << std::endl;
     std::cout << "Press E to Exit The Program" << std::endl;
     std::cin >> f_input;
