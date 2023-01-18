@@ -5,6 +5,15 @@
 
 std::string sub_name;
 
+//Welcome Message
+void welcome() {
+    Sleep(500);
+    std::cout << "Welcome to Attendance Records Program" << std::endl;
+    Sleep(500);
+    std::cout << "This Software Lets you Monitor your Attendance" << std::endl;
+    Sleep(500);
+}
+
 // Display Options
 void display_options(){
     std::cout << "Press M to enter Menu" << std::endl;
@@ -34,35 +43,50 @@ void output() {
 
 int main() {
     char f_input = 'A', s_input = 'A';// first input, second input
-    Sleep(500);
-    std::cout << "Welcome to Attendance Records Program" << std::endl;
-    Sleep(500);
-    std::cout << "This Software Lets you Monitor your Attendance" << std::endl;
-    Sleep(500);
-    display_options();
-    std::cin >> f_input;
-
-    switch (f_input) {
-        case 'M'://main menu
-            display_menu();
-            std::cin >> s_input;
-
-            switch (s_input) {
+    welcome();
+    while(f_input != 'E') {
+        display_options();
+        std::cin >> f_input;
+        switch (f_input) {
+        case 'M': // Menu
+            while (s_input != 'E') {
+                display_menu();
+                std::cin >> s_input;
+                switch (s_input) {
                 case 'A':
                     input();
-                    // write_subject_name(sub_name);
-            
+                    s_input = 'Z';
+                    break;
+                
                 case 'D':
                     output();
+                    s_input = 'Z';
+                    break;
                 
                 case 'E':
+                    s_input = 'E';
                     break;
-            }
-        
-        case 'H'://Help Text
 
-        case 'E'://Exit Program
+                default:
+                    s_input = 'Z';
+                    break;
+                }
+            }
+            
             break;
+        
+        case 'H': // Help Text
+            f_input = 'Z';
+            break;
+        
+        case 'E': // Exit
+            f_input = 'E';
+            break;
+        
+        default:
+            f_input = 'Z';
+            break;
+        }
     }
     return 0;
 }
