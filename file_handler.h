@@ -6,7 +6,6 @@
 
 std::fstream Subjects;
 
-
 // Write subject name to file
 void write_subject_name(std::string s_name) {
     Subjects.open("Subjects", std::ios::app); //app for appending
